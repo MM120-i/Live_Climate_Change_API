@@ -98,42 +98,28 @@ app.get("/news", (req, res) =>{
 app.get("/news/:newspaperId", (req, res) => {
 
     const newspaperId = req.params.newspaperId;
-    const newspaper = newspapers.find((np) => np.name === newspaperId);
+    const newspaperAddress = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].address;
+    const newspaperBase = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].base;
 
-    if(!newspaper){
+    axios.get(newspaperAddress).then(response => {
 
-        return res.status(404).json({error : "Newspaper not found"});
-    }
-    else{
+        const html = response.data;
+        const $ = cheerio.load(html);
+        const specificArticles = [];
 
-        try{
+        $("a:contains('climate')", html).each(function (){
 
-            const response = axios.get(newspaper.address);
-            const html = response.data;
-            const $ = cheerio.load(html);
-            const specificArticles = [];
-
-            $("a:contains('climate')").each(function() {
-
-                const title = $(this).text();
-                const url = $(this).attr("href");
-
-                specificArticles.push({
-
-                    title,
-                    url : newspaper.base + url,
-                    source : newspaperId,
-                });
+            const title = $(this).text();
+            const url = $(this).attr("href");
+            specificArticles.push({
+                title,
+                url : newspaperBase + url,
+                source : newspaperId
             });
+        });
 
-            res.json(specificArticles);
-        }
-        catch(error){
-
-            console.error('Error scraping ${newspaper.name}:', error);
-            res.status(500).json({error: "An error has occured while scraping data."});
-        }
-    }
+        res.json(specificArticles);
+    }).catch(err => console.log(err));
 });
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
