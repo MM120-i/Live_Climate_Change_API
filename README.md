@@ -26,3 +26,7 @@ Technologies:
 Node.js, Express.js, Axios, Cheerio
 
 Author: Mahim Marufuzzaman
+
+## Live API
+
+You can check out the live Climate Change News Tracker API on [Rapid API](https://rapidapi.com/mahimmarufuzzaman1234/api/live-climate-change-news-tracker/).
