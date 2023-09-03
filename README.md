@@ -7,10 +7,13 @@ Stay updated with real-time climate change news from around the world using our 
 
 Features:
 
-Access climate change news articles from various reputable sources.
-Retrieve headlines, article links, and source information.
-Stay up-to-date with the latest developments in climate change.
+- Access climate change news articles from various reputable sources.
+- Retrieve headlines, article links, and source information.
+- Stay up-to-date with the latest developments in climate change.
+
+
 Usage: Integrate our API into your applications, websites, or services to keep your audience informed about the urgent issues surrounding climate change.
+
 
 Endpoints:
 
