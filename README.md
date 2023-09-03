@@ -15,6 +15,7 @@ Usage: Integrate our API into your applications, websites, or services to keep y
 Endpoints:
 
 "/news": Get a list of all climate change-related articles from multiple sources.
+
 "/news/:newspaperId": Retrieve articles from a specific news source based on the provided newspaperId.
 
 Technologies:
